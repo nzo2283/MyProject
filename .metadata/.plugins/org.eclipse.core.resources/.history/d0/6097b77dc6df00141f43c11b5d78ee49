@@ -1,0 +1,73 @@
+
+import java.io.File;
+import java.io.FileNotFoundException;
+
+import java.util.Scanner;
+
+public class CalorieTester {
+
+	public static void main(String[] args) throws FileNotFoundException {
+
+		
+
+		Meal breakfast = new Meal();
+		Meal lunch = new Meal();
+		Meal dinner = new Meal();
+		Meal snack = new Meal();
+		Meal drink = new Meal();
+
+
+
+		// Prompt for the input and output file names
+		Scanner console = new Scanner(System.in);
+		System.out.print("Input Breakfast file: ");
+		String breakfastFileName = console.next();
+		System.out.println();
+		System.out.println("BREAKFAST");
+		breakfast.readFile(breakfastFileName);
+		//System.out.println(breakfast.min());
+		System.out.println(breakfast.find("Kiwi"));
+		
+		System.out.println();
+		System.out.print("Input Lunch file: ");
+		String lunchFileName = console.next();
+		System.out.println();
+		System.out.println("LUNCH");
+		lunch.readFile(lunchFileName);
+		//System.out.println(lunch.min());
+
+		System.out.println();
+		System.out.print("Input Dinner file: ");
+		System.out.println();
+		System.out.println("DINNER");
+		String dinnerFileName = console.next();
+		dinner.readFile(dinnerFileName);
+
+		System.out.println();
+		System.out.print("Input Snack file: ");
+		System.out.println();
+		System.out.println("SNACK");
+		String snackFileName = console.next();
+		snack.readFile(snackFileName);
+
+		System.out.println();
+		System.out.print("Input Drink file: ");
+		System.out.println();
+		System.out.println("DRINKS");
+		String drinkFileName = console.next();
+		drink.readFile(drinkFileName);
+		System.out.println(drink.min());
+
+		System.out.print("What would you like to do next?: ");
+		System.out.print("Type 'a' if you would like to get the total amount of calories for a meal group ");
+		System.out.print("Type 'b' if you would like to get the total amount of calories for the day ");
+		System.out.print("Type 'c' if you would like to add either a food or drink to a meal group ");
+		System.out.print("Type 'd' if you would like to get the total amount of calories for a meal ");
+		
+		console.close();
+
+
+	}
+}
+
+

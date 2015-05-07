@@ -1,0 +1,150 @@
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+
+/**
+ * @author Nora Osei
+ * @authorHelp Dee
+ * 
+ */
+
+/**
+ * Manipulates Data in Arrays
+ * Creates Meal Constructor that sets 10 locations to null
+ */
+
+public class Meal  {
+
+	Product [] mealList = new Product [10];
+	int lastProduct = 0;
+	static int totalCals = 0;
+	int totalMealCals = 0;
+
+	public Meal () 
+	{
+
+		for (int i = 0; i < mealList.length; i++) 
+		{
+			mealList[i] = null;
+		}
+
+	}
+
+	/**
+	 * Add new product to meal
+	 *
+	 */
+	public void addProduct (Product newProduct) {
+
+		mealList [lastProduct] = newProduct;
+		totalCals+= newProduct.getCals();
+		lastProduct++;
+	}
+
+
+	/**
+	 * Return total calories per meal 
+	 */
+	public int totalMealCals() {
+		for (int i = 0; i < mealList.length; i++) 
+		{
+			totalMealCals = mealList[i].getCals();
+		}
+		return totalMealCals;
+	}
+
+	/**
+	 * @param fileName the name of the file that contains products
+	 * @throws FileNotFoundException 
+	 */
+	public void readFile(String fileName) throws FileNotFoundException {
+
+		// Construct the Scanner and objects for reading and writing
+		File inputFile = new File(fileName);
+		Scanner in = new Scanner(inputFile);
+
+		while (in.hasNextLine())
+		{
+			String line = in.nextLine();
+			int i = 0; 
+			while (!Character.isDigit(line.charAt(i))) 
+			{ i++; 
+
+			}
+
+			String prodName = line.substring(0, i);
+			prodName = prodName.trim();
+			String prodCalsSTR = line.substring(i, line.length());
+
+			int prodCals = Integer.parseInt(prodCalsSTR.trim());
+
+			Product product = new Product(prodName, prodCals);
+			this.addProduct(product);
+			System.out.println(product.toString());
+
+		}
+		//System.out.println("closing file?");
+		in.close();
+	}
+
+
+	/** 
+	 * @return a text representation of the item eaten/drank and the corresponding calories
+	 */
+	public String toString(){
+		String mealSTR = "";
+		for (int i = 0; i < lastProduct; i++) 
+		{
+			mealSTR = mealSTR + mealList[i].toString() + " ";
+		}
+		return mealSTR;
+	}
+
+	/**
+	 * @return the smallest number of calories the food/drink in that meal was
+	 */
+	public int min() {
+		int min = mealList[0].getCals();
+		for (int i = 0; i < lastProduct; i++) 
+		{
+			if (mealList[i].getCals() < min)
+				min = mealList[i].getCals();	
+		}
+
+		return min;
+	}
+
+	/**
+	 * @return the greatest number of calories the food/drink in that meal was
+	 */
+	public int max() {
+		int max = mealList[0].getCals();
+		for (int i = 0; i < lastProduct; i++) 
+		{
+			if (mealList[i].getCals() > max)
+				max = mealList[i].getCals();	
+		}
+
+		return max;
+	}
+
+	/**
+	 * @return the searched product and calories
+	 */
+	public Product find(String findName) {
+		String name = findName;
+		Product product = null;
+		for (int i = 0; i < lastProduct; i++) 
+		{
+			if (mealList[i].getItem() == name)
+				product = mealList[i];
+			else i++;
+		}
+		return product;	 
+	}
+
+
+
+}

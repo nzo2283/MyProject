@@ -1,0 +1,3 @@
+Water 0
+Soda 150
+OJ 100

@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+
+
+public class CalorieData  {
+
+	//static int breakfast = CalorieTester.breakfastTotalCals;
+	//static int lunch = CalorieTester.lunchTotalCals;
+	//static int dinner = CalorieTester.dinnerTotalCals;
+	//static int snack = CalorieTester.snackTotalCals;
+	//static int drink = CalorieTester.snackTotalCals;
+
+	Meal food = new Meal();
+	
+	public static int totalCals = 0;
+
+
+}
+
+
+
+
+
+

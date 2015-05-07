@@ -1,0 +1,11 @@
+Strawberries: 22 Calories
+Kiwi: 50 Calories
+Syrup: 150 Calories
+Grapes: 90 Calories
+Eggs: 100 Calories
+Pancakes: 300 Calories
+Waffles: 200 Calories
+Oranges: 75 Calories
+Bacon: 160 Calories
+Sausage: 180 Calories
+

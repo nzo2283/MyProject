@@ -1,0 +1,10 @@
+Strawberries 22
+Kiwi 50
+Syrup 150
+Grapes 90
+Eggs 100
+Pancakes 300
+Waffles 200
+Oranges 75
+Bacon 160
+Sausage 180

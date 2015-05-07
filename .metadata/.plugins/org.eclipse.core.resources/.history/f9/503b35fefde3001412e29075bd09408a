@@ -1,0 +1,274 @@
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+
+/**
+ * @author Nora Osei
+ * @authorHelp Dee
+ * 
+ */
+
+/**
+ * Manipulates Data in Arrays
+ * Creates Meal Constructor that sets 10 locations to null
+ */
+
+
+
+public class Meal  {
+
+	Product [] mealList = new Product [20];
+	int lastProduct = 0;
+	int totalCals = 0;
+	int totalMealCals = 0;
+
+	public Meal () 
+	{
+		for (int i = 0; i < mealList.length; i++) 
+		{
+			mealList[i] = null;
+		}
+	}
+
+	/**
+	 * Add new product to meal
+	 *
+	 */
+	public void addProduct (Product newProduct) {
+
+		mealList [lastProduct] = newProduct;
+		totalCals+= newProduct.getCals();
+		lastProduct++;
+	}
+
+	/**
+	 * Remove product from meal
+	 *
+	 */
+	public void removeProduct (Product product) {
+		String name = product.getItem();
+
+		for (int i = 0; i < lastProduct; i++) 
+		{
+			if (mealList[i].getItem() == name) 
+			{
+				mealList[i] = null;
+				totalCals = totalCals - mealList[i].getCals();
+				lastProduct--;
+			}
+			else i++;
+		}
+
+	}
+
+
+
+	/**
+	 * Return total calories per meal 
+	 */
+	public int totalMealCals() {
+		for (int i = 0; i < lastProduct; i++) 
+		{
+			totalMealCals += mealList[i].getCals();
+		}
+		return totalMealCals;
+	}
+
+	/**
+	 * @param fileName the name of the file that contains products
+	 * @throws FileNotFoundException 
+	 */
+	public void readFile(String fileName) throws FileNotFoundException {
+
+		// Construct the Scanner and objects for reading and writing
+		File inputFile = new File(fileName);
+		Scanner in = new Scanner(inputFile);
+
+		while (in.hasNextLine())
+		{
+			String line = in.nextLine();
+			int i = 0; 
+			while (!Character.isDigit(line.charAt(i))) 
+			{ i++; 
+
+			}
+
+			String prodName = line.substring(0, i);
+			prodName = prodName.trim();
+			String prodCalsSTR = line.substring(i, line.length());
+
+			int prodCals = Integer.parseInt(prodCalsSTR.trim());
+
+			Product product = new Product(prodName, prodCals);
+			this.addProduct(product);
+			System.out.println(product.toString());
+
+		}
+
+		in.close();
+	}
+
+
+	/** 
+	 * @return a text representation of the item eaten/drank and the corresponding calories
+	 */
+	public String toString(){
+		String mealSTR = "";
+		for (int i = 0; i < lastProduct; i++) 
+		{
+			System.out.println(mealList[i]);
+
+		}
+		return mealSTR;
+	}
+
+	/**
+	 * @return the smallest number of calories the food/drink in that meal was
+	 */
+	public String min() {
+		int min = mealList[0].getCals();
+		String item = null;
+		String smallItem = "";
+
+		for (int i = 0; i < lastProduct; i++) 
+		{
+			if (mealList[i].getCals() <= min)
+			{
+				min = mealList[i].getCals();
+				item = mealList[i].getItem();
+				smallItem =  mealList[i].getItem() + " which had " + mealList[i].getCals();
+			} else
+				i++;
+		}
+
+		return smallItem;
+	}
+
+	/**
+	 * @return the greatest number of calories the food/drink in that meal was
+	 */
+	public String max() {
+		int max = mealList[0].getCals();
+		String item = null;
+		String largeItem = "";
+		for (int i = 0; i < lastProduct; i++) 
+		{
+			if (mealList[i].getCals() >= max)
+			{
+				max = mealList[i].getCals();
+				item = mealList[i].getItem();
+				largeItem =  mealList[i].getItem() + " which had " + mealList[i].getCals();
+			}
+			else
+				i++;
+		}
+
+		return largeItem;
+	}
+
+	/**
+	 * @return if a person has consumed the searched food item
+	 */
+	public boolean find(String findName) {
+		String name = findName;
+		//String notFound = "You did not consume " + name + " today. "
+		//+ "But maybe you should have, " +name+ "'s are great!";
+
+		for (int i = 0; i < lastProduct; i++) 
+		{
+			if (mealList[i].getItem().equalsIgnoreCase(name)) 
+			{
+				i++;
+				return true;
+				//return "Yes, you had " +  name + " today. Don't you remember?";
+			}
+
+		}
+		return false;
+
+	}
+
+
+
+	/**
+	 * @return the average amount of calories in a meal
+	 */
+	public double average() {
+		double average = 0;
+
+		average =totalMealCals/lastProduct; 
+
+		return average;
+	}
+
+	/**
+	 * @return sorts the meal from lowest to highest calories
+	 */
+	public void sortLH() {
+
+		Product temp = null;
+
+
+		for (int i =0; i < lastProduct; i++){
+			for (int j = 1; j < lastProduct; j++)
+			{
+				if (mealList[j-1].getCals() > mealList[j].getCals())
+				{
+					temp = mealList[j];
+					mealList[j] = mealList[j-1];
+					mealList[j-1] = temp;	
+
+
+					//System.out.println("Check");
+				}
+			}
+		}
+
+	}
+
+	/**
+	 * @return sorts the meal from highest to lowest calories
+	 */
+	public void sortHL() {
+
+		Product temp = null;
+
+
+		for (int i =0; i < lastProduct; i++){
+			for (int j = 1; j < lastProduct; j++)
+			{
+				if (mealList[j-1].getCals() < mealList[j].getCals())
+				{
+					temp = mealList[j];
+					mealList[j] = mealList[j-1];
+					mealList[j-1] = temp;	
+				}
+			}
+		}
+	}
+
+
+
+
+	/**
+	 * @return graphs the amount of items you have consumed in one meal
+	 */
+	public String graph() {
+		String star = "";
+		for (int i = 0; i = lastProduct; i++)
+		{
+			star += star + "*";
+		}
+		
+		return star;
+	}
+
+
+
+
+
+}
+
+

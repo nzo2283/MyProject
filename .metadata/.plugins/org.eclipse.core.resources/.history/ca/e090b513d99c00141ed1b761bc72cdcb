@@ -1,0 +1,19 @@
+public class CalcTester {
+
+	public static void main(String[] args) {
+
+		
+		
+		Calculator newCalc = new Calculator();
+		
+		int sumAdd =newCalc.add();
+		System.out.println(sumAdd);
+
+
+
+	}
+
+
+
+
+}

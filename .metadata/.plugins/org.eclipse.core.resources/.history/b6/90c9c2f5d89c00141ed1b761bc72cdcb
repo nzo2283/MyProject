@@ -1,0 +1,20 @@
+public class CalcTester {
+
+	public static void main(String[] args) {
+
+		int x = 5;
+		int y = 10;
+		
+		Calculator newCalc = new Calculator();
+
+		newCalc.add();
+		System.out.println();
+
+
+
+	}
+
+
+
+
+}

@@ -1,0 +1,284 @@
+
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+
+public class CalorieTester {
+
+
+	public static void main(String[] args) throws FileNotFoundException {
+		
+		//Put after read in all data
+		int daysTotalCalories = 0;
+
+		Meal breakfast = new Meal();
+		Meal lunch = new Meal();
+		Meal dinner = new Meal();
+		Meal snack = new Meal();
+		Meal drink = new Meal();
+
+
+
+		// Prompt for the input and output file names
+		Scanner console = new Scanner(System.in);
+		System.out.print("Input Breakfast file: ");
+		String breakfastFileName = console.next();
+		System.out.println();
+		System.out.println("BREAKFAST");
+
+		breakfast.readFile(breakfastFileName);
+		
+
+
+		System.out.println();
+		System.out.println("Would you like to do?: ");
+
+
+		System.out.println("Create a new product? Type '1'");
+		System.out.println("Find the minimum amount of calories eaten in a meal? Type '2' ");
+		System.out.println("Find the maximum amount of calories eaten in a meal? Type '3' ");
+		System.out.println("What item would you like to find? Type '4' ");
+		System.out.println("To Exit Type '5' ");
+
+
+
+
+		Scanner in = new Scanner(System.in);
+		int answer = in.nextInt();
+
+		if (answer == 1)
+		{
+			System.out.println("What is the name of the product you would like to add?");
+			Scanner in1 = new Scanner(System.in);
+			String name = in1.next();
+
+			System.out.println("How many calories is the product?");
+			Scanner in1_2 = new Scanner(System.in);
+			int cals = in1_2.nextInt();
+
+			System.out.println("Which meal would you like to add it to?");
+			Scanner in1_3 = new Scanner(System.in);
+			String meal = in1_3.next();
+
+
+			Product newProduct = new Product(name, cals);
+
+			if (meal.equals("breakfast")) 
+
+			{
+				breakfast.addProduct(newProduct);
+				System.out.println(breakfast);
+			}
+
+			else if ( meal.equals("lunch"))
+			{
+				lunch.addProduct(newProduct);
+				System.out.println(lunch.toString());
+			}
+			else if (meal.equals("dinner") )
+			{
+				dinner.addProduct(newProduct);
+				System.out.println(dinner.toString());
+			}
+			else if ( meal.equals("snack") )
+			{
+				snack.addProduct(newProduct);
+				System.out.println(snack.toString());
+			}
+			else 
+			{
+				drink.addProduct(newProduct);
+				System.out.println(drink.toString());
+			}
+		
+		}
+
+
+
+
+		if (answer == 2) {
+			System.out.println("What meal would you like to find your smallest food product in?: ");
+			Scanner in2 = new Scanner(System.in);
+			String meal = in2.next();
+
+			if (meal.equals("breakfast")) 
+
+			{
+				System.out.println("The smallest amount of calories you had for breakfast was: " + breakfast.min() + " Calories");
+				
+			}
+
+			else if ( meal.equals("lunch"))
+			{
+				
+				System.out.println("The smallest amount of calories you had for at lunch was: " + lunch.min() + " Calories");
+			}
+			else if (meal.equals("dinner") )
+			{
+				
+				System.out.println("The smallest amount of calories you had at dinner was : " + dinner.min() + " Calories");
+			}
+			else if ( meal.equals("snack") )
+			{
+				System.out.println("The smallest amount of calories you had for a snack was: " + snack.min() + " Calories");
+				
+			}
+			else 
+			{
+				System.out.println("The smallest amount of calories you had as a drink was: " + drink.min() + " Calories");
+				
+			}
+
+		}
+
+			if (answer == 3) {
+				System.out.println("What meal would you like to find your largest food product in?: ");
+				Scanner in3 = new Scanner(System.in);
+				String meal = in3.next();
+
+				if (meal.equals("breakfast")) 
+
+				{
+					System.out.println("The largest amount of calories you had for breakfast was: " 
+				+ breakfast.max() + " Calories. That's a lot!");
+					
+				}
+
+				else if ( meal.equals("lunch"))
+				{
+					
+					System.out.println("The largest amount of calories you had for at lunch was: " 
+					+ lunch.max() + " Calories. That's a lot!");
+				}
+				else if (meal.equals("dinner") )
+				{
+					
+					System.out.println("The largest amount of calories you had at dinner was : " 
+					+ dinner.max() + " Calories. That's a lot!");
+				}
+				else if ( meal.equals("snack") )
+				{
+					System.out.println("The largest amount of calories you had for a snack was: " 
+				+ snack.max() + " Calories. That's a lot!");
+					
+				}
+				else 
+				{
+					System.out.println("The largest amount of calories you had as a drink was: " 
+				+ drink.max() + " Calories. That's a lot!");
+					
+				}
+			}
+			
+
+				if (answer == 4) {
+					System.out.println("What item would you like to find?: ");
+					Scanner in4 = new Scanner(System.in);
+					String meal = in4.next();
+					System.out.println("What meal did you eat " + meal + " in?");
+					Scanner in4_1 = new Scanner(System.in);
+					String item = in4_1.next();
+
+					if (meal.equals("breakfast")) 
+
+					{
+						breakfast.find();
+						
+						
+					}
+
+					else if ( meal.equals("lunch"))
+					{
+						
+						System.out.println("The largest amount of calories you had for at lunch was: " 
+						+ lunch.max() + " Calories. That's a lot!");
+					}
+					else if (meal.equals("dinner") )
+					{
+						
+						System.out.println("The largest amount of calories you had at dinner was : " 
+						+ dinner.max() + " Calories. That's a lot!");
+					}
+					else if ( meal.equals("snack") )
+					{
+						System.out.println("The largest amount of calories you had for a snack was: " 
+					+ snack.max() + " Calories. That's a lot!");
+						
+					}
+					else 
+					{
+						System.out.println("The largest amount of calories you had as a drink was: " 
+					+ drink.max() + " Calories. That's a lot!");
+						
+					}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			//System.out.println("You ate " + breakfastTotalCals + " calories for breakfast");
+			//System.out.println(breakfast.find());
+			//System.out.println("You have consumed " + CalorieData.totalCals() + " calories today");
+
+
+
+
+			//System.out.println("The item with the smallest amount of calories in this meal was " + breakfast.max() + " calories");
+			//System.out.println(breakfast.find("Kiwi"));
+			//Product newProduct = new Product("Waffles", 200);
+			//breakfast.addProduct(newProduct);
+			//System.out.println("The item with the smallest amount of calories in this meal was " + breakfast.max() + " calories");
+			//System.out.println(breakfast);
+			//System.out.println("You have consumed: " + breakfast.totalMealCals() + " calories today");
+
+			System.out.println();
+			System.out.print("Input Lunch file: ");
+			String lunchFileName = console.next();
+			System.out.println();
+			System.out.println("LUNCH");
+			lunch.readFile(lunchFileName);
+			//System.out.println(lunch.min());
+
+			System.out.println();
+			System.out.print("Input Dinner file: ");
+			System.out.println();
+			System.out.println("DINNER");
+			String dinnerFileName = console.next();
+			dinner.readFile(dinnerFileName);
+			
+
+			System.out.println();
+			System.out.print("Input Snack file: ");
+			System.out.println();
+			System.out.println("SNACK");
+			String snackFileName = console.next();
+			snack.readFile(snackFileName);
+			
+
+			System.out.println();
+			System.out.print("Input Drink file: ");
+			System.out.println();
+			System.out.println("DRINKS");
+			String drinkFileName = console.next();
+			drink.readFile(drinkFileName);
+
+
+			console.close();
+
+
+		}
+	}
+}
+
+
+
